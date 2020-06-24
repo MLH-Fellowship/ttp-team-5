@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import GamesContainer from './containers/GamesContainer'
 
 /**
  * COMPONENT
@@ -10,9 +9,8 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div>
+    <div style={{color: 'black'}}>
       <h3 style={{textAlign: 'center'}}>Welcome, {email}</h3>
-      <GamesContainer />
     </div>
   )
 }

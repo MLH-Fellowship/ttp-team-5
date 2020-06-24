@@ -161,7 +161,7 @@ export const removeFavoriteGameThunk = gameId => {
   }
 }
 
-const gameReducer = (state = initialState, action) => {
+const playerReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_GAMES:
       return {
@@ -195,4 +195,4 @@ const gameReducer = (state = initialState, action) => {
   }
 }
 
-export default gameReducer
+export default playerReducer

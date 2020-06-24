@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Favorite = db.define('favorite', {
-  gameId: {
+  playerId: {
     type: Sequelize.INTEGER,
     unique: true,
     allowNull: false

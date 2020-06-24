@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 
 import {fetchFavoriteGamesThunk, removeFavoriteGameThunk} from '../store'
 
-class FavoriteGames extends Component {
+class FavoritePlayer extends Component {
   componentDidMount() {
     console.log('MOUNTING')
     this.props.fetchFavoriteGames()
@@ -98,8 +98,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchFavoriteGames: () => dispatch(fetchFavoriteGamesThunk()),
-    removeFavoriteGame: gameId => dispatch(removeFavoriteGameThunk(gameId))
+    removeFavoriteGame: playerId => dispatch(removeFavoriteGameThunk(playerId))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavoriteGames)
+export default connect(mapStateToProps, mapDispatchToProps)(FavoritePlayer)

@@ -15,10 +15,10 @@ router.get('/:userId', async (req, res, next) => {
 
 router.post('/:userId', async (req, res, next) => {
   const {userId} = req.params
-  const {gameId} = req.body
+  const {playerId} = req.body
 
   try {
-    const favorite = await Favorite.create({userId, gameId})
+    const favorite = await Favorite.create({userId, playerId})
 
     console.log({favorite})
 
@@ -28,14 +28,14 @@ router.post('/:userId', async (req, res, next) => {
   }
 })
 
-router.delete('/:userId/:gameId', async (req, res, next) => {
-  const {userId, gameId} = req.params
+router.delete('/:userId/:playerId', async (req, res, next) => {
+  const {userId, playerId} = req.params
 
-  console.log({userId, gameId})
+  console.log({userId, playerId})
 
   try {
     const favorite = await Favorite.destroy({
-      where: {userId, gameId},
+      where: {userId, playerId},
       returning: true
     })
 

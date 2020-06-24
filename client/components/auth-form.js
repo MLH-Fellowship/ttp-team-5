@@ -10,58 +10,47 @@ const AuthForm = props => {
   const {string, name, displayName, handleSubmit, error} = props
 
   return (
-    <div className="row">
-      <h4
-        style={{
-          textAlign: 'center',
-          border: '2px solid green',
-          padding: '10px',
-          backgroundColor: 'green'
-        }}
-      >
-        {string}
-      </h4>
+    <div className="login-signup">
+      <h4 style={{marginLeft: '17px'}}>{string}</h4>
       <form onSubmit={handleSubmit} name={name}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            textContent: 'center'
-          }}
-          className="col"
-        >
+        <div>
           <label htmlFor="email">
-            <small>Email</small>
+            <h4>Email</h4>
           </label>
-          <input name="email" type="text" />
+          <input
+            className="form-control form-control-lg"
+            type="text"
+            name="email"
+            placeholder="Enter email"
+          />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            textContent: 'center'
-          }}
-          className="col"
-        >
+        <div>
           <label htmlFor="password">
-            <small>Password</small>
+            <h4>Password</h4>
           </label>
-          <input name="password" type="password" />
+          <input
+            name="password"
+            type="password"
+            className="form-control form-control-lg"
+            placeholder="Password"
+          />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            textContent: 'center'
-          }}
-        >
-          <button type="submit">{displayName}</button>
+        <div>
+          <button className="btn btn-secondary btn-lg" type="submit">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
-      <a style={{textDecoration: 'none', color: 'white'}} href="/auth/google">
-        {displayName} with Google
-      </a>
+      <button
+        style={{marginLeft: '17px'}}
+        href="/auth/google"
+        type="button"
+        className="btn btn-secondary btn-primary"
+        disabled
+      >
+        {displayName} with Google{' '}
+      </button>
     </div>
   )
 }
