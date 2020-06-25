@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
 import SearchFieldView from './SearchFieldView'
+import {connect} from 'react-redux'
+import { fetchPlayerInfoThunk } from '../../thunks'
 
 class PlayerSearchView extends Component {
+  componentDidMount() {
+    this.props.fetchPlayerInfo()
+    console.log('componentDidMount')
+  }
+
   render() {
     return (
       <div>
@@ -11,4 +18,14 @@ class PlayerSearchView extends Component {
   }
 }
 
-export default PlayerSearchView
+const mapStateToProps = state => {
+  console.log({state})
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPlayerInfo: () => dispatch(fetchPlayerInfoThunk())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerSearchView)
