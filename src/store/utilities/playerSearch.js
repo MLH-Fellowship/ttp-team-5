@@ -24,8 +24,8 @@ export const fetchPlayerInfoThunk = (playerName) => (dispatch) => {
     "url":`https://api-football-v1.p.rapidapi.com/v2/players/search/${playerName}`,
     "headers":{
     "content-type":"application/octet-stream",
-    "x-rapidapi-host":"api-football-v1.p.rapidapi.com",
-    "x-rapidapi-key":"65569e16c6mshbc77c320069046cp1ad589jsn9a10421630dd",
+    "x-rapidapi-host": API_HOST,
+    "x-rapidapi-key": API_KEY,
     "useQueryString":true
     }
     })
