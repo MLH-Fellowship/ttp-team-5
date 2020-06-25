@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import SearchFieldView from './SearchFieldView'
 
-export default class PlayerSearchView extends Component {
+class PlayerSearchView extends Component {
   render() {
     return (
       <div>
-        <SearchFieldView/>
+        <SearchFieldView onChange={this.onChange} onSubmit={this.onSubmit}/>
       </div>
     )
   }
 }
+
+export default PlayerSearchView

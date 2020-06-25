@@ -1,13 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
 
-const SearchFieldView = ({ value, onChange, onSearch, onRandom }) => {
+class SearchFieldBar extends Component {
+  constructor() {
+    super();
+    this.state = { search: '' }
+  }
+
+  onInputChange(search) {
+    this.setState({ search });
+    this.props.onTermChange(search);
+  }
+
+  render() {
     return (
       <div className="search">
-        <h5>Enter a Soccer Players Name:</h5> 
-        <input class="form-control" type="text" placeholder="Cristiano Ronaldo" value={value} onChange={onChange} aria-label="Search" />
-        <button type="button" className="btn btn-secondary btn-sm" onClick={onSearch}>Search</button>
+        <h5>Search for a football player:</h5>
+        <input 
+          class="form-control" 
+          type="text" 
+          aria-label="Search" 
+          placeholder="Cristiano Ronaldo" 
+          onChange={event => this.onInputChange(event.target.value)} />
       </div>
     );
-  };
+  }
+}
 
-export default SearchFieldView
+export default SearchFieldBar;
