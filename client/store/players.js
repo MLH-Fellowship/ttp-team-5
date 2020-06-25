@@ -1,51 +1,51 @@
 import axios from 'axios'
 
 const initialState = {
-  allGames: [],
-  favoriteGames: []
+  allPlayers: [],
+  favoritePlayers: []
 }
 
-const FETCH_GAMES = 'FETCH_GAMES'
-const SEARCH_GAMES = 'SEARCH_GAMES'
-const FETCH_FAVORITE_GAMES = 'FETCH_FAVORITE_GAMES'
-const ADD_FAVORITE_GAME = 'ADD_FAVORITE_GAME'
-const REMOVE_FAVORITE_GAME = 'REMOVE_FAVORITE_GAME'
+const FETCH_PLAYER = 'FETCH_PLAYER'
+const SEARCH_PLAYERS = 'SEARCH_PLAYERS'
+const FETCH_FAVORITE_PLAYERS = 'FETCH_FAVORITE_PLAYERS'
+const ADD_FAVORITE_PLAYER = 'ADD_FAVORITE_PLAYER'
+const REMOVE_FAVORITE_PLAYER = 'REMOVE_FAVORITE_PLAYER'
 
 //Action Creator
-const fetchAllGames = games => {
+const fetchAllPlayers = players => {
   return {
-    type: FETCH_GAMES,
-    games
+    type: FETCH_PLAYER,
+    players
   }
 }
 
-const fetchFavoriteGames = games => {
+const fetchFavoritePlayers = players => {
   return {
-    type: FETCH_FAVORITE_GAMES,
-    games
+    type: FETCH_FAVORITE_PLAYERS,
+    players
   }
 }
 
-const addFavoriteGame = gameId => {
+const addFavoritePlayer = playerId => {
   return {
-    type: ADD_FAVORITE_GAME,
-    gameId
+    type: ADD_FAVORITE_PLAYER,
+    playerId
   }
 }
 
-const removeFavoriteGame = gameId => {
+const removeFavoritePlayer = playerId => {
   return {
-    type: REMOVE_FAVORITE_GAME,
-    gameId
+    type: REMOVE_FAVORITE_PLAYER,
+    playerId
   }
 }
 
 // Thunk Creators
-export const fetchGameThunk = input => {
+export const fetchplayerThunk = input => {
   return async dispatch => {
     try {
       const {data} = await axios({
-        url: `https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/?search=${input}&limit=20&fields=category,cover.url,first_release_date,genres,name,platforms,popularity,rating,rating_count,release_dates,screenshots,storyline,summary,tags,total_rating,total_rating_count,url`,
+        url: `https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/players/?search=${input}&limit=20&fields=category,cover.url,first_release_date,genres,name,platforms,popularity,rating,rating_count,release_dates,screenshots,storyline,summary,tags,total_rating,total_rating_count,url`,
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -55,19 +55,19 @@ export const fetchGameThunk = input => {
           'limit: 20; fields category,cover.url,first_release_date,genres,name,platforms,popularity,rating,rating_count,release_dates,screenshots,storyline,summary,tags,total_rating,total_rating_count,url;'
       })
       console.log({data})
-      dispatch(fetchAllGames(data))
+      dispatch(fetchAllPlayers(data))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const fetchGamesThunk = () => {
+export const fetchPlayersThunk = () => {
   return async dispatch => {
     try {
       const {data} = await axios({
         url:
-          'https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games',
+          'https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/players',
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -79,14 +79,14 @@ export const fetchGamesThunk = () => {
 
       console.log({data})
 
-      dispatch(fetchAllGames(data))
+      dispatch(fetchAllPlayers(data))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const fetchFavoriteGamesThunk = () => {
+export const fetchFavoritePlayersThunk = () => {
   return async (dispatch, useState) => {
     try {
       const {id} = useState().user
@@ -95,17 +95,17 @@ export const fetchFavoriteGamesThunk = () => {
 
       console.log({data})
 
-      const promises = data.map(game =>
+      const promises = data.map(player =>
         axios({
           url:
-            'https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/games/',
+            'https://cors-anywhere.herokuapp.com/https://api-v3.igdb.com/players/',
           method: 'POST',
           headers: {
             Accept: 'application/json',
             'user-key': '5d814ccfdde668d67c178b8cd959feff'
           },
           data: `limit: 20; fields category,cover.url,first_release_date,genres,name,platforms,popularity,rating,rating_count,release_dates,screenshots,storyline,summary,tags,total_rating,total_rating_count,url;where id=${
-            game.gameId
+            player.playerId
           };`
         })
       )
@@ -115,11 +115,11 @@ export const fetchFavoriteGamesThunk = () => {
       Promise.all(promises).then(res => {
         console.log({res})
 
-        const gamesData = res.map(curRes => curRes.data[0])
+        const playerData = res.map(curRes => curRes.data[0])
 
-        console.log({gamesData})
+        console.log({playerData})
 
-        dispatch(fetchFavoriteGames(gamesData))
+        dispatch(fetchFavoritePlayers(playerData))
       })
     } catch (error) {
       console.error(error)
@@ -127,34 +127,34 @@ export const fetchFavoriteGamesThunk = () => {
   }
 }
 
-export const addFavoriteGameThunk = gameId => {
+export const addFavoritePlayerThunk = playerId => {
   return async (dispatch, useState) => {
     try {
-      console.log({gameId})
+      console.log({playerId})
 
       const {id} = useState().user
 
-      const {data} = await axios.post(`/api/favorites/${id}`, {gameId})
+      const {data} = await axios.post(`/api/favorites/${id}`, {playerId})
 
       console.log({data})
 
-      dispatch(addFavoriteGame(gameId))
+      dispatch(addFavoritePlayer(playerId))
     } catch (error) {
       console.error(error)
     }
   }
 }
 
-export const removeFavoriteGameThunk = gameId => {
+export const removeFavoritePlayerThunk = playerId => {
   return async (dispatch, useState) => {
     try {
       const {id} = useState().user
 
-      const {data} = await axios.delete(`/api/favorites/${id}/${gameId}`)
+      const {data} = await axios.delete(`/api/favorites/${id}/${playerId}`)
 
       console.log({data})
 
-      dispatch(removeFavoriteGame(gameId))
+      dispatch(removeFavoritePlayer(playerId))
     } catch (error) {
       console.error(error)
     }
@@ -163,31 +163,31 @@ export const removeFavoriteGameThunk = gameId => {
 
 const playerReducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_GAMES:
+    case FETCH_PLAYER:
       return {
         ...state,
-        allGames: action.games
+        allPlayers: action.players
       }
-    case SEARCH_GAMES:
+    case SEARCH_PLAYERS:
       return {
         ...state,
-        allGames: action.game
+        allPlayers: action.player
       }
-    case FETCH_FAVORITE_GAMES:
+    case FETCH_FAVORITE_PLAYERS:
       return {
         ...state,
-        favoriteGames: action.games
+        favoritePlayers: action.players
       }
-    case ADD_FAVORITE_GAME:
+    case ADD_FAVORITE_PLAYER:
       return {
         ...state,
-        favoriteGames: [...state.favoriteGames, action.gameId]
+        favoritePlayers: [...state.favoritePlayers, action.playerId]
       }
-    case REMOVE_FAVORITE_GAME:
+    case REMOVE_FAVORITE_PLAYER:
       return {
         ...state,
-        favoriteGames: state.favoriteGames.filter(
-          game => game.id !== action.gameId
+        favoritePlayers: state.favoritePlayers.filter(
+          player => player.id !== action.playerId
         )
       }
     default:
