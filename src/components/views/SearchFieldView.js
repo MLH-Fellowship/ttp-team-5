@@ -4,8 +4,8 @@ const SearchFieldView = ({ value, onChange, onSearch, onRandom }) => {
     return (
       <div className="search">
         <h5>Enter a Soccer Players Name:</h5> 
-        <input className="main-input" placeholder="Cristiano Ronaldo" value={value} onChange={onChange} />
-        <button className="button" onClick={onSearch}>Search</button>
+        <input class="form-control" type="text" placeholder="Cristiano Ronaldo" value={value} onChange={onChange} aria-label="Search" />
+        <button type="button" className="btn btn-secondary btn-sm" onClick={onSearch}>Search</button>
       </div>
     );
   };
