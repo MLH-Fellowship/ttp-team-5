@@ -3,36 +3,27 @@ import React, { Component } from 'react'
 export default class Carousel extends Component {
   render() {
     return (
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-      
-        <div class="carousel-inner">
-          <div class="item active">
-              <img src={require("./images/soccerimg1.jpg")} alt="Soccer Ball" />
+    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel">
+        <div className="carousel-inner">
+          <div className="carousel-item active">
+            <img className="d-block w-100" src={require("./images/soccerimg1.jpg")} alt="Soccer Ball"  />
           </div>
-      
-          <div class="item">
-            <img src={require("./images/soccerimg1.jpg")} alt="Soccer Field" />
+          <div className="carousel-item">
+            <img className="d-block w-100" src={require("./images/soccerimg2.jpg")} alt="Soccer Field" />
           </div>
-      
-          <div class="item">
-            <img src="ny.jpg" alt="New York" />
+          <div className="carousel-item">
+            <img className="d-block w-100" src={require("./images/soccerimg3.jpg")} alt="Soccer Players" />
           </div>
         </div>
-      
-        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-          <span class="sr-only">Previous</span>
+        <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span className="sr-only">Previous</span>
         </a>
-        <a class="right carousel-control" href="#myCarousel" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-          <span class="sr-only">Next</span>
+        <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span className="carousel-control-next-icon" aria-hidden="true"></span>
+          <span className="sr-only">Next</span>
         </a>
-      </div>
+    </div>
     )
   }
 }
