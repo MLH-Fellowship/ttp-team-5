@@ -1,11 +1,42 @@
 import React, { Component } from 'react'
+import SearchFieldView from './SearchFieldView'
+import {connect} from 'react-redux'
+import { fetchPlayerInfoThunk } from '../../thunks'
 
-export default class PlayerSearchView extends Component {
+class PlayerSearchView extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      player: []
+    }
+  }
+
+  componentDidMount() {
+    this.props.fetchPlayerInfo()
+    console.log('componentDidMount')
+  }
+
   render() {
     return (
       <div>
-        We are in PlayerSearchView
+        <SearchFieldView onChange={this.onChange} onSubmit={this.onSubmit}/>
       </div>
     )
   }
 }
+
+const mapStateToProps = state => {
+  console.log({state})
+  return {
+    player: state.player
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPlayerInfo: (player) => dispatch(fetchPlayerInfoThunk(player))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerSearchView)

@@ -1,5 +1,10 @@
 import axios from "axios";
 
+const initialState = {
+  allPlayers: [],
+
+}
+
 // Action Types
 const FETCH_PLAYERINFO = "FETCH_PLAYERINFO";
 
@@ -27,15 +32,15 @@ export const fetchPlayerInfoThunk = (playerName) => (dispatch) => {
     "x-rapidapi-host": API_HOST,
     "x-rapidapi-key": API_KEY,
     "useQueryString":true
-    }
+      }
     })
     .then((response)=>{
       console.log(response)
       dispatch(fetchPlayerInfo(response))
-    })
+  })
     .catch((error)=>{
       console.log(error)
-    })
+})
 
 // axios.get(BASE_URL, {
 //     params: {
@@ -50,7 +55,7 @@ export const fetchPlayerInfoThunk = (playerName) => (dispatch) => {
 };
 
 // Reducer
-const reducer = (state = {}, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_PLAYERINFO:
       return action.payload;
