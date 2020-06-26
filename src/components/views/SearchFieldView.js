@@ -3,7 +3,9 @@ import React, { Component } from "react";
 class SearchFieldBar extends Component {
   constructor() {
     super();
-    this.state = { playerName: '' }
+    this.state = { 
+      playerName: '',
+      displayTitle: ""  }
   }
 
   onInputChange(playerName) {
@@ -14,7 +16,8 @@ class SearchFieldBar extends Component {
   render() {
     return (
       <div className="search">
-        <h5>Search for a football player:</h5>
+        {/* <h5>Search for a football player:</h5> */}
+        <h5>{this.props.displayTitle}</h5>
         <input 
           class="form-control" 
           type="text" 
