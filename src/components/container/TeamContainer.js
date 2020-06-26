@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import PlayerSearchView from '../views/PlayerSearchView'
+import TeamView from '../views/TeamView'
 import SearchFieldView from '../views/SearchFieldView'
 import {connect} from 'react-redux'
 import { debounce } from "lodash";
 import { fetchTeamInfoThunk } from '../../store/utilities/teamSearch';
 
 
-class TeamView extends Component {
+class TeamContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,22 +27,24 @@ class TeamView extends Component {
     return (
       <div>
         <SearchFieldView onTermChange={debounce((teamName) => this.handleInputChange(teamName), 1000)}/>
-        <PlayerSearchView allTeams={this.props.teams}/>
+        {/* <TeamView allTeams={this.props.teams}/> */}
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  if (typeof state.teamSearch.data === 'undefined' ){
+  console.log("team state", state)
+  // if (typeof state.teamSearch.data === 'undefined' ){
     return {
       teams: []
     };
-  }else{
-    return {
-      teams: state.teamSearch.data.api.teams
-    }
-  }
+  // }else{
+  //   return {
+  //     teams: state.teamSearch.data.api.teams
+  //   }
+  // }
+  
       
 }
 
@@ -52,4 +54,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TeamView)
+export default connect(mapStateToProps, mapDispatchToProps)(TeamContainer)

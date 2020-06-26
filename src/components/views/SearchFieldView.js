@@ -22,7 +22,7 @@ class SearchFieldBar extends Component {
           class="form-control" 
           type="text" 
           aria-label="Search" 
-          placeholder="Cristiano Ronaldo" 
+          placeholder="Enter Here..." 
           onChange={event => this.onInputChange(event.target.value)} />
       </div>
     );
