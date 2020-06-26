@@ -4,9 +4,10 @@ import SearchFieldView from './SearchFieldView'
 class PlayerSearchView extends Component {
   render() {
     return (
-      <div>
-        <SearchFieldView onChange={this.onChange} onSubmit={this.onSubmit}/>
-      </div>
+      <></>
+      // <div>
+      //   {/* <SearchFieldView onChange={this.onChange} onSubmit={this.onSubmit}/> */}
+      // </div>
     )
   }
 }
