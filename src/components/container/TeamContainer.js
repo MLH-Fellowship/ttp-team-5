@@ -19,7 +19,7 @@ class TeamContainer extends Component {
 
   handleInputChange =  (teamName) => {
     console.log("input: ", teamName)
-    this.props.fetchPlayerInfo(teamName)
+    this.props.fetchTeamInfo(teamName)
     this.setState({teams: this.props.teams});
   }
 
@@ -27,7 +27,7 @@ class TeamContainer extends Component {
     return (
       <div>
         <SearchFieldView onTermChange={debounce((teamName) => this.handleInputChange(teamName), 1000)}/>
-        {/* <TeamView allTeams={this.props.teams}/> */}
+        <TeamView allTeams={this.props.teams}/>
       </div>
     )
   }
@@ -35,22 +35,22 @@ class TeamContainer extends Component {
 
 const mapStateToProps = state => {
   console.log("team state", state)
-  // if (typeof state.teamSearch.data === 'undefined' ){
+  if (typeof state.teamSearch.data === 'undefined' ){
     return {
       teams: []
     };
-  // }else{
-  //   return {
-  //     teams: state.teamSearch.data.api.teams
-  //   }
-  // }
+  }else{
+    return {
+      teams: state.teamSearch.data.api.teams
+    }
+  }
   
       
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPlayerInfo: (teamName) => dispatch(fetchTeamInfoThunk(teamName))
+    fetchTeamInfo: (teamName) => dispatch(fetchTeamInfoThunk(teamName))
   }
 }
 
