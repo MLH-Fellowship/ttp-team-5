@@ -20,10 +20,10 @@ class PlayerSearchContainer extends Component {
   handleInputChange =  (playerName) => {
     console.log("input: ", playerName)
     this.props.fetchPlayerInfo(playerName)
+    this.setState({players: this.props.players});
   }
 
   render() {
-    console.log("name", this.state.firstname)
     return (
       <div>
         <SearchFieldView onTermChange={debounce((playerName) => this.handleInputChange(playerName), 1000)}/>
@@ -34,10 +34,16 @@ class PlayerSearchContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state: ", state.api.players.player_id)
-  return {
-    players: state.api.players.player_id
-  };
+  if (typeof state.playerSearch.data === 'undefined' ){
+    return {
+      players: []
+    };
+  }else{
+    return {
+      players: state.playerSearch.data.api.players
+    }
+  }
+      
 }
 
 const mapDispatchToProps = dispatch => {
