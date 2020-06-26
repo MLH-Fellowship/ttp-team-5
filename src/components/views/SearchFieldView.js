@@ -3,12 +3,13 @@ import React, { Component } from "react";
 class SearchFieldBar extends Component {
   constructor() {
     super();
-    this.state = { search: '' }
+    this.state = { 
+      search: '' 
+    }
   }
 
   onInputChange(search) {
     this.setState({ search });
-    this.props.onTermChange(search);
   }
 
   render() {
