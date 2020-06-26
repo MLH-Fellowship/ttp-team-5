@@ -6,7 +6,7 @@ const TeamView = (props) => {
       <div className="container">
         {props.allTeams.map(team =>
           <div key={team.id} className="card" style={{width: "25rem", display:"inline-block", justifyContent: "left",margin: "1rem"}}>
-            <img className="card-img-top" src={require("./images/logo-placeholder.jpg")} alt="Placehodler" />
+            <img className="card-img-top" src={team.logo} alt="Placehodler" />
             <div className="card-body">
               <h5 className="card-title" style={{color: "black"}}>Team Info</h5>
               <h5 className="card-text" style={{color: "black"}}>Team name: {team.name} </h5>
