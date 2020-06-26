@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import RoutesContainer from '../components/routes/RoutesConatiner';
-import NavBarContainer from '../components/container/NavBarContainer';
+import { NavBarContainer } from '../components/container';
 
 function App() {
   return (
