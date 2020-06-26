@@ -26,7 +26,8 @@ class PlayerSearchContainer extends Component {
   render() {
     return (
       <div>
-        <SearchFieldView onTermChange={debounce((playerName) => this.handleInputChange(playerName), 1000)} displayTitle="Search for a football player:" />
+        <SearchFieldView onTermChange={debounce((playerName) => this.handleInputChange(playerName), 1000)} 
+        displayTitle="Search for a football player:" />
         <PlayerSearchView allPlayers={this.props.players}/>
       </div>
     )

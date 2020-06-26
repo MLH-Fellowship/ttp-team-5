@@ -1,11 +1,22 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class TeamView extends Component {
-  render() {
+const TeamView = (props) => {
+  console.log("props.player = ", props.allTeams)
     return (
-      <div>
-        We are in TeamView
+      <div className="container">
+        {props.allTeams.map(team =>
+          <div key={team.id} className="card" style={{width: "25rem", display:"inline-block", justifyContent: "left",margin: "1rem"}}>
+            <img className="card-img-top" src={team.logo} alt="Placehodler" />
+            <div className="card-body">
+              <h5 className="card-title" style={{color: "black"}}>Team Info</h5>
+              <h5 className="card-text" style={{color: "black"}}>Team name: {team.name} </h5>
+              <h5 className="card-text" style={{color: "black"}}>Country: {team.country}</h5>
+              <h5 className="card-text" style={{color: "black"}}>Venue Name: {team.venue_name} </h5>
+            </div>
+          </div>
+          )}
       </div>
     )
   }
-}
+
+export default TeamView

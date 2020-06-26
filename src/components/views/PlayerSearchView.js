@@ -8,7 +8,7 @@ const PlayerSearchView = (props) => {
           <div key={player.id} className="card" style={{width: "25rem", display:"inline-block", justifyContent: "left",margin: "1rem"}}>
             <img className="card-img-top" src={require("./images/person-placeholder.jpg")} alt="Placehodler" />
             <div className="card-body">
-            <h5 className="card-title" style={{color: "black"}}>Player Info</h5>
+              <h5 className="card-title" style={{color: "black"}}>Player Info</h5>
               <h5 className="card-text" style={{color: "black"}}>First Name: {player.firstname}</h5>
               <h5 className="card-text" style={{color: "black"}}>Last Name: {player.lastname}</h5>
               <h5 className="card-text" style={{color: "black"}}>Position: {player.position}</h5>
