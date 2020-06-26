@@ -9,21 +9,18 @@ const initialState = {
 const FETCH_TEAMINFO = "FETCH_TEAMINFO";
 
 // Action Creators
-const fetchTeamInfo = (Team) => {
+const fetchTeamInfo = (team) => {
   return {
     type: FETCH_TEAMINFO,
-    payload: Team,
+    payload: team,
   };
 };
 
-// const API_HOST = process.env.PLAYER_INFO_API_HOST;
-const API_KEY = process.env.REACT_APP_TEAM_INFO_API_KEY;
-// const BASE_URL = "https://api.edamam.com/search"
-// const RECIPE_BASE = "http://www.edamam.com/ontologies/edamam.owl#recipe_"
 
-// Thunk Creators
-export const fetchTeamInfoThunk = (TeamName) => (dispatch) => {
-   console.log("name", TeamName)
+const API_KEY = process.env.REACT_APP_TEAM_INFO_API_KEY;
+
+export const fetchTeamInfoThunk = (teamName) => (dispatch) => {
+   console.log("name", teamName)
    return axios({
     "method":"GET",
     "url":`https://v2.api-football.com/teams/search/${teamName}`,
