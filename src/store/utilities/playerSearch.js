@@ -16,22 +16,19 @@ const fetchPlayerInfo = (player) => {
   };
 };
 
-const API_HOST = process.env.PLAYER_INFO_API_HOST;
-const API_KEY = process.env.PLAYER_INFO_API_KEY;
+// const API_HOST = process.env.PLAYER_INFO_API_HOST;
+const API_KEY = process.env.REACT_APP_PLAYER_INFO_API_KEY;
 // const BASE_URL = "https://api.edamam.com/search"
 // const RECIPE_BASE = "http://www.edamam.com/ontologies/edamam.owl#recipe_"
 
 // Thunk Creators
 export const fetchPlayerInfoThunk = (playerName) => (dispatch) => {
-  console.log("name", playerName)
+   console.log("name", playerName)
    return axios({
     "method":"GET",
-    "url":`https://api-football-v1.p.rapidapi.com/v2/players/search/${playerName}`,
+    "url":`https://v2.api-football.com/players/search/${playerName}`,
     "headers":{
-    "content-type":"application/octet-stream",
-    "x-rapidapi-host": API_HOST,
-    "x-rapidapi-key": API_KEY,
-    "useQueryString":true
+        "x-rapidapi-key": API_KEY,
       }
     })
     .then((response)=>{

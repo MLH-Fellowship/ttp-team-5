@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PlayerSearchView from '../views/PlayerSearchView'
 import SearchFieldView from '../views/SearchFieldView'
 import {connect} from 'react-redux'
+import { debounce } from "lodash";
 import { fetchPlayerInfoThunk } from '../../thunks'
 
 
@@ -14,24 +15,20 @@ class PlayerSearchContainer extends Component {
       position: ""
     }
   }
-  // componentDidMount() {
-  //   // this.props.fetchPlayerInfo()
-  // }
-
-  handleInputChange =  event => {
-    console.log("event", event)
-    this.setState({ [event.target.name]: event.target.value });
+  componentDidMount() {
+    // this.props.fetchPlayerInfo()
   }
 
-  handleSubmit = event =>{
-    console.log("submit")
+  handleInputChange =  playerName => {
+    console.log("input: ", playerName)
+    this.props.fetchPlayerInfo(playerName)
   }
 
   render() {
     console.log("name", this.state.firstname)
     return (
       <div>
-        <SearchFieldView onChange={this.handleInputChange} onSubmit={this.handleSubmit}/>
+        <SearchFieldView onTermChange={debounce((playerName) => this.handleInputChange(playerName), 1000)}/>
         {/* <PlayerSearchView allPlayers={this.props.allPlayers}/> */}
       </div>
     )
@@ -39,7 +36,7 @@ class PlayerSearchContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  // console.log({state})
+  console.log("state: ", state)
   return {
     firstname: "",
     lastname: "",
@@ -49,7 +46,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // fetchPlayerInfo: (playerName) => dispatch(fetchPlayerInfoThunk(playerName))
+    fetchPlayerInfo: (playerName) => dispatch(fetchPlayerInfoThunk(playerName))
   }
 }
 
