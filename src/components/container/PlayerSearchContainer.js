@@ -10,13 +10,11 @@ class PlayerSearchContainer extends Component {
   constructor() {
     super();
     this.state = {
-      firstname: "",
-      lastname: "",
-      position: ""
+      players: []
     }
   }
   componentDidMount() {
-    // this.props.fetchPlayerInfo()
+    this.props.fetchPlayerInfo()
   }
 
   handleInputChange =  playerName => {
@@ -29,18 +27,16 @@ class PlayerSearchContainer extends Component {
     return (
       <div>
         <SearchFieldView onTermChange={debounce((playerName) => this.handleInputChange(playerName), 1000)}/>
-        {/* <PlayerSearchView allPlayers={this.props.allPlayers}/> */}
+        <PlayerSearchView allPlayers={this.props.players}/>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => {
-  console.log("state: ", state)
+  console.log("state: ", state.playerSearch.data)
   return {
-    firstname: "",
-    lastname: "",
-    position: ""
+    players: state.playerSearch.data,
   };
 }
 
