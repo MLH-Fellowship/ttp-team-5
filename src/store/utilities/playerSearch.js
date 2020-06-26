@@ -18,8 +18,6 @@ const fetchPlayerInfo = (player) => {
 
 // const API_HOST = process.env.PLAYER_INFO_API_HOST;
 const API_KEY = process.env.REACT_APP_PLAYER_INFO_API_KEY;
-// const BASE_URL = "https://api.edamam.com/search"
-// const RECIPE_BASE = "http://www.edamam.com/ontologies/edamam.owl#recipe_"
 
 // Thunk Creators
 export const fetchPlayerInfoThunk = (playerName) => (dispatch) => {

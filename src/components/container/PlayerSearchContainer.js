@@ -10,9 +10,7 @@ class PlayerSearchContainer extends Component {
   constructor() {
     super();
     this.state = {
-      firstname: "",
-      lastname: "",
-      position: ""
+      players: []
     }
   }
   componentDidMount() {
@@ -21,7 +19,7 @@ class PlayerSearchContainer extends Component {
 
   handleInputChange =  playerName => {
     console.log("input: ", playerName)
-    this.props.fetchPlayerInfo(playerName)
+    // this.props.fetchPlayerInfo(playerName)
   }
 
   render() {
@@ -38,9 +36,7 @@ class PlayerSearchContainer extends Component {
 const mapStateToProps = state => {
   console.log("state: ", state)
   return {
-    firstname: "",
-    lastname: "",
-    position: ""
+    players: state.allPlayers,
   };
 }
 
