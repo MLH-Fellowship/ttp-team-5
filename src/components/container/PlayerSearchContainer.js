@@ -29,7 +29,7 @@ class PlayerSearchContainer extends Component {
     return (
       <div>
         <SearchFieldView onTermChange={debounce((playerName) => this.handleInputChange(playerName), 1000)}/>
-        {/* <PlayerSearchView allPlayers={this.props.allPlayers}/> */}
+        <PlayerSearchView allPlayers={this.props.allPlayers}/>
       </div>
     )
   }
