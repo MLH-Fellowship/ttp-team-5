@@ -4,8 +4,9 @@ import PropTypes from "prop-types"
 const PlayerSearchView = (props) => {
   console.log("props.player = ", props.allPlayers)
   return(
+    
     // <div className="container">
-    //   {props.api.players.map(player =>
+    //   {props.players.map(player =>
     //     <div key={player.id}>
     //       <h5>First Name: {player.firstname}</h5>
     //       <h5>Last Name: {player.lastname}</h5>
@@ -13,7 +14,7 @@ const PlayerSearchView = (props) => {
     //       <h5>Position: {player.position}</h5>
     //       <h5>Height: {player.height}</h5>
     //       <h5>Weight: {player.weight}</h5>
-    //     // </div>
+    //     </div>
     //   )}
     // </div>
     <></>

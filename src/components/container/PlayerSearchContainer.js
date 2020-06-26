@@ -17,7 +17,7 @@ class PlayerSearchContainer extends Component {
     this.props.fetchPlayerInfo()
   }
 
-  handleInputChange =  playerName => {
+  handleInputChange =  (playerName) => {
     console.log("input: ", playerName)
     this.props.fetchPlayerInfo(playerName)
   }
@@ -34,9 +34,9 @@ class PlayerSearchContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log("state: ", state.playerSearch.data)
+  console.log("state: ", state.api.players.player_id)
   return {
-    players: state.playerSearch.data,
+    players: state.api.players.player_id
   };
 }
 
